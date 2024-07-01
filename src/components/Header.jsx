@@ -18,6 +18,7 @@ export default function Header({ handleSubmit }) {
             e.preventDefault();
             handleSubmit(inputRef.current.value);
           }}
+          className="input-form"
         >
           <div className="input-container">
             <input
