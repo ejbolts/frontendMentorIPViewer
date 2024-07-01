@@ -4,6 +4,7 @@ import L from "leaflet";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import { useState } from "react";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -12,8 +13,14 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow,
 });
 
-const MapComponent = () => {
-  const position = [-27.4705, 153.026];
+const MapComponent = ({ lat, lng }) => {
+  let position;
+
+  if (lat == 0 && lng == 0) {
+    return <h1 className="InitialDataFetching">fetching data...</h1>;
+  } else {
+    position = [lat, lng];
+  }
 
   return (
     <MapContainer
