@@ -1,28 +1,28 @@
 import React from "react";
 
 export default function IPDetails({ domainIP }) {
-  const { ipAddress, city, country, timezone, ISP } = domainIP;
+  const { ip, city, country, timezone, isp } = domainIP;
 
   return (
-    <div>
-      <div>
+    <div className="IpContainerDetails">
+      <section className="ContainerSection">
         <h3>IP ADDRESS</h3>
-        <p>{ipAddress}</p>
-      </div>
-      <div>
+        <p>{ip}</p>
+      </section>
+      <section className="ContainerSection">
         <h3>LOCATION</h3>
-        <p>{city}</p>
-
-        <p>{country}</p>
-      </div>
-      <div>
+        <p>
+          {city}, {country}
+        </p>
+      </section>
+      <section className="ContainerSection">
         <h3>TIMEZONE</h3>
         <p>{timezone}</p>
-      </div>
-      <div>
+      </section>
+      <section className="ContainerSection">
         <h3>ISP</h3>
-        <p>{ISP}</p>
-      </div>
+        <p>{isp}</p>
+      </section>
     </div>
   );
 }

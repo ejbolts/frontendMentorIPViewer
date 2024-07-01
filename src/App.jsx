@@ -4,7 +4,6 @@ import MapComponent from "./components/MapComponent";
 import IPDetails from "./components/IPDetails";
 
 function App() {
-  const [findIP, setFindIP] = useState("");
   const [domainIP, setDomainIP] = useState({
     ipAddress: "",
     city: "",
@@ -25,11 +24,11 @@ function App() {
       console.log(initialIP);
 
       setDomainIP({
-        ipAddress: initialIP.ip,
+        ip: initialIP.ip,
         city: initialIP.location.region,
         country: initialIP.location.country,
         timezone: initialIP.location.timezone,
-        ISP: initialIP.isp,
+        isp: initialIP.isp,
         lat: initialIP.location.lat,
         lng: initialIP.location.lng,
       });
@@ -37,13 +36,26 @@ function App() {
     getInitialIP();
   }, []);
 
-  async function handleSubmit() {
-    const response = await fetch(
-      `https://geo.ipify.org/api/v2/country?apiKey=at_wNXjFcNTx9ROaiEQlRqnx9uqUR5kI&ipAddress=${findIP}`
-    );
-    const data = await response.json();
-    console.log(data);
-  }
+  const handleSubmit = async (ipAddress) => {
+    try {
+      const response = await fetch(
+        `https://geo.ipify.org/api/v2/country,city?apiKey=at_wNXjFcNTx9ROaiEQlRqnx9uqUR5kI&ipAddress=${ipAddress}`
+      );
+      const data = await response.json();
+      setDomainIP({
+        ip: data.ip,
+        city: data.location.city,
+        country: data.location.country,
+        timezone: data.location.timezone,
+        isp: data.isp,
+        lat: data.location.lat,
+        lng: data.location.lng,
+      });
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching IP data:", error);
+    }
+  };
   return (
     <>
       <Header handleSubmit={handleSubmit} />
