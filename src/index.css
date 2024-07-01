@@ -75,7 +75,7 @@ form {
   z-index: 10;
   padding: 20px;
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0 24px 28px rgba(0, 0, 0, 0.1);
   min-width: 800px;
 }
@@ -105,4 +105,39 @@ form {
   font-weight: 700;
   font: bold;
   color: hsl(0, 0%, 17%);
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+  }
+  .input-container {
+    border: none;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    height: 55px;
+    font-size: 16px;
+    min-width: 300px;
+  }
+
+  .IpContainerDetails {
+    flex-direction: column;
+    align-items: center;
+    top: 150px;
+    min-width: 300px;
+    padding: 0px;
+    margin: 20px;
+    transform: translateX(-57%);
+  }
+
+  .ContainerSection {
+    padding: 10px 0;
+    text-align: center;
+    border: none;
+  }
 }
