@@ -10,16 +10,13 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-#map {
-  height: 180px;
-}
 .header {
   height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   color: white;
+  padding: 40px;
 }
 .InitialDataFetching {
   display: flex;
@@ -69,17 +66,26 @@ form {
 }
 
 .IpContainerDetails {
+  position: absolute;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 20px;
-  background-color: #f0f0f0;
+  top: 215px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 10;
+  padding: 20px;
+  background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 24px 28px rgba(0, 0, 0, 0.1);
+  min-width: 800px;
 }
-
+.ContainerSection:last-child {
+  border-right: none;
+}
+.leaflet-container {
+  position: relative;
+  z-index: 0;
+}
 .ContainerSection {
   padding: 10px 24px;
   border-right: 1px solid hsl(0, 0%, 80%);

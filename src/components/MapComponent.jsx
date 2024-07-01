@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
@@ -12,9 +12,9 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow,
 });
 
-const MapComponent = ({ lat, lng }) => {
+const MapComponent = ({ city, lat, lng }) => {
   let position;
-
+  const formattedPosition = `${lat.toFixed(2)}, ${lng.toFixed(2)}`;
   if (lat == 0 && lng == 0) {
     return <h1 className="InitialDataFetching">fetching data...</h1>;
   } else {
@@ -23,6 +23,7 @@ const MapComponent = ({ lat, lng }) => {
 
   return (
     <MapContainer
+      className="MapContainer"
       center={position}
       zoom={13}
       style={{ height: "100vh", width: "100%" }}
@@ -32,10 +33,7 @@ const MapComponent = ({ lat, lng }) => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       <Marker position={position}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-        <Tooltip>{position}r</Tooltip>
+        <Tooltip>{formattedPosition}</Tooltip>
       </Marker>
     </MapContainer>
   );
