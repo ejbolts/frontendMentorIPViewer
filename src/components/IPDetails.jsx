@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function IPDetails({ domainIP }) {
   const { ip, city, country, timezone, isp } = domainIP;
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import MapComponent from "./components/MapComponent";
 import IPDetails from "./components/IPDetails";
+import ErrorModal from "./components/ErrorModal";
 
 function App() {
   const [domainIP, setDomainIP] = useState({
@@ -13,25 +14,30 @@ function App() {
     lat: 0,
     lng: 0,
   });
+  const handleCloseModal = () => {
+    setError(false);
+  };
+  const [error, setError] = useState(false);
   useEffect(() => {
     async function getInitialIP() {
-      const response = await fetch(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=at_wNXjFcNTx9ROaiEQlRqnx9uqUR5kI&ipAddress`
-      );
-
-      const data = await response.json();
-      const initialIP = data;
-      console.log(initialIP);
-
-      setDomainIP({
-        ip: initialIP.ip,
-        city: initialIP.location.region,
-        country: initialIP.location.country,
-        timezone: initialIP.location.timezone,
-        isp: initialIP.isp,
-        lat: initialIP.location.lat,
-        lng: initialIP.location.lng,
-      });
+      try {
+        const response = await fetch(
+          `https://geo.ipify.org/api/v2/country,city?apiKey=at_wNXjFcNTx9ROaiEQlRqnx9uqUR5kI`
+        );
+        const data = await response.json();
+        setDomainIP({
+          ip: data.ip,
+          city: data.location.city,
+          country: data.location.country,
+          timezone: data.location.timezone,
+          isp: data.isp,
+          lat: data.location.lat,
+          lng: data.location.lng,
+        });
+      } catch (error) {
+        setError(error);
+        console.error("Error fetching initial IP data:", error);
+      }
     }
     getInitialIP();
   }, []);
@@ -51,16 +57,22 @@ function App() {
         lat: data.location.lat,
         lng: data.location.lng,
       });
-      console.log(data);
+      setError(false);
     } catch (error) {
+      setError(error);
       console.error("Error fetching IP data:", error);
     }
   };
   return (
     <>
-      <Header handleSubmit={handleSubmit} />
+      <Header handleSubmit={handleSubmit} error={error} />
       <IPDetails domainIP={domainIP} />
       <MapComponent lat={domainIP.lat} lng={domainIP.lng} />
+      <ErrorModal open={error} onClose={handleCloseModal}>
+        <p>
+          Sorry there was an error fetching the data: {error && error.message}
+        </p>
+      </ErrorModal>
     </>
   );
 }

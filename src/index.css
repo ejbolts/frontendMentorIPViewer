@@ -98,6 +98,29 @@ form {
   line-height: 2rem;
   color: hsl(0, 0%, 59%);
 }
+.error-modal {
+  top: 50%;
+  background-color: rgb(255, 192, 203);
+  color: red;
+  margin-top: 10px;
+  padding: 4px;
+  border-radius: 8px;
+  border: solid 2px;
+}
+
+.error-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgb(85, 1, 14);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.error-btn:hover {
+  background-color: darkred;
+}
 
 .ContainerSection p {
   margin: 0 0 8px;
@@ -105,6 +128,13 @@ form {
   font-weight: 700;
   font: bold;
   color: hsl(0, 0%, 17%);
+}
+
+/* Media Query for tablet Devices */
+@media (max-width: 800px) {
+  .IpContainerDetails {
+    min-width: 550px;
+  }
 }
 
 /* Media Query for Mobile Devices */
@@ -136,7 +166,7 @@ form {
   }
 
   .ContainerSection {
-    padding: 10px 0;
+    padding: 5px 0;
     text-align: center;
     border: none;
   }
