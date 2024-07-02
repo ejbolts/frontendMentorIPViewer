@@ -73,6 +73,18 @@ function App() {
           Sorry there was an error fetching the data: {error && error.message}
         </p>
       </ErrorModal>
+      <div className="attribution">
+        <p>
+          Challenge by{" "}
+          <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">
+            Frontend Mentor
+          </a>{" "}
+          Coded by{" "}
+          <a href="https://www.frontendmentor.io/profile/ejbolts">
+            Ethan Bolton
+          </a>
+        </p>
+      </div>
     </>
   );
 }
